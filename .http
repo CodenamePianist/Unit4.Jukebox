@@ -10,3 +10,12 @@ GET {{host}}/users/2
 
 ### User does not exist
 GET {{host}}/users/49
+
+### Get all playlists
+GET {{host}}/playlists
+
+### Get a single playlist with tracks
+GET {{host}}/playlists/8
+
+### Playlist does not exist
+GET {{host}}/playlists/49
