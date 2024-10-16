@@ -58,3 +58,43 @@ router.get("/playlists/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+router.post("/playlists", async (req, res, next) => {
+  const { name, description, trackIds, ownerId } = req.body;
+  const tracks = trackIds.map((id) => ({ id: +id }));
+
+  if (!name) {
+    return next({
+      status: 422,
+      message: "New playlists must have a name.",
+    });
+  }
+
+  try {
+    const playlist = await prisma.playlist.create({
+      data: {
+        name,
+        description,
+        ownerId: +ownerId,
+        tracks: { connect: tracks },
+      },
+      include: {
+        owner: true,
+        tracks: true,
+      },
+    });
+    res.json(playlist);
+  } catch (error) {
+    console.log(req.body);
+    next(error);
+  }
+});
+
+router.get("/tracks", async (req, res, next) => {
+  try {
+    const tracks = await prisma.track.findMany();
+    res.json(tracks);
+  } catch (error) {
+    next(error);
+  }
+});

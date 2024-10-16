@@ -19,3 +19,28 @@ GET {{host}}/playlists/8
 
 ### Playlist does not exist
 GET {{host}}/playlists/49
+
+### Create a new playlist
+POST {{host}}/playlists
+Content-Type: application/json
+
+{
+    "name": "Fisher EDC 2024",
+    "description": "Fisher's live set from EDC 2024",
+    "ownerId": 3,
+    "trackIds": [2, 4, 6]
+}
+
+### Failed to create new playlist
+POST {{host}}/playlists
+Content-Type: application/json
+
+{
+    "name": "",
+    "description": "Something",
+    "ownerId": 3,
+    "trackIds": [1, 2, 3]
+}
+
+### Get a list of all tracks
+GET {{host}}/tracks
