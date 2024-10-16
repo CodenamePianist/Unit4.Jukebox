@@ -1,0 +1,12 @@
+### ALL THE TESTING
+
+@host = http://localhost:3000
+
+### Get all users
+GET {{host}}/users
+
+### Get a specific user
+GET {{host}}/users/2
+
+### User does not exist
+GET {{host}}/users/49
