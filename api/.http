@@ -1,0 +1,6 @@
+### ALL THE TESTING
+
+@host = http://localhost:3000
+
+### Get all users
+GET {{host}}/users
