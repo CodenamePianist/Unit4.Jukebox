@@ -44,3 +44,9 @@ Content-Type: application/json
 
 ### Get a list of all tracks
 GET {{host}}/tracks
+
+### Get a single track
+GET {{host}}/tracks/16
+
+### Song does not exist
+GET {{host}}/tracks/72

@@ -98,3 +98,18 @@ router.get("/tracks", async (req, res, next) => {
     next(error);
   }
 });
+
+router.get("/tracks/:id", async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const track = await prisma.track.findUnique({ where: { id: +id } });
+    if (track) {
+      res.json(track);
+    } else {
+      next({ status: 404, message: "This song does not exist. Sad Day." });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
